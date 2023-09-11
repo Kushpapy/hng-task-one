@@ -1,9 +1,8 @@
-const express =  require("express")
-const moment = require("moment")
-
+const express =  require("express");
+const path = require("path");
 const app = express();
-const fs = require("fs");
-const path = require("path")
+
+
 
 app.get("/api", function(req, res){
      console.log(req.query)
@@ -17,15 +16,17 @@ app.get("/api", function(req, res){
      const utcTime = new Date();
      const filePath = path.join(__dirname, "app.js")
      const fileName = path.basename(filePath);
-     const githubFileUrl = `https://github.com/kushpapy/Hng/blob/main/${fileName}`;
+     const githubFileUrl = `https://github.com/Kushpapy/hng-task-one/blob/main/${fileName}`;
+     const github_repo_url = `https://github.com/Kushpapy/hng-task-one`;
 
     return res.status(200).json({
-       slackName: req.query.slackName,
-       currentDay: dayOfWeekStr[dayOfWeek],
-       utcTime: utcTime.toISOString().split(".")[0] + "Z",
+       slack_name: req.query.slackName,
+       current_day: dayOfWeekStr[dayOfWeek],
+       utc_time: utcTime.toISOString().split(".")[0] + "Z",
        track: req.query.track,
-       githubFileUrl: githubFileUrl,
-       statusCode: statusCode,
+       github_file_url: githubFileUrl,
+       github_repo_url: github_repo_url,
+       status_code: statusCode,
     })
 })
 
